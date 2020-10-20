@@ -75,6 +75,12 @@ input:focus{
     border-radius: 12px!important;
     box-shadow:  0px 0px 0px 0 rgba(17, 17, 17, 0.51)!important;
 }
+input[type="radio"]:checked{
+    background-color: #5f5858!important;
+    border: 1px solid rgba(79, 105, 255, 0.849)!important;
+    border-radius: 12px!important;
+    box-shadow:  0px 0px 0px 0 rgba(17, 17, 17, 0.51)!important;
+}
 input:active{
     background-color: #5f5858!important;
     border: 1px solid rgba(79, 105, 255, 0.849)!important;

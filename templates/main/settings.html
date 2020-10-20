@@ -1,0 +1,61 @@
+{% extends "main/main.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+
+
+<div class="container-fluid text-center text-light">
+        <div class="row mt-5 mb-4">
+            <div class="col-8 mx-auto text-center cart-status">
+                <h2 class="font-weight-bold text-muted">Настройка</h2>
+            </div>
+        </div>
+    <h3>Привет {{user.username}}!</h3>
+<p>Это твоя страничка, где ты можешь поменять свой логин, изменить пароль</p>
+        <div class="container text-light">
+            <div class="row text-left mt-5">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-2">
+                            <p>Логин</p>
+                        </div>
+                        <div class="col-2">
+                            <p>artemkfd</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <p>Статус</p>
+                        </div>
+                        <div class="col-2">
+                            <p>владелец</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <p>День рождения</p>
+                        </div>
+                        <div class="col-2">
+                            <p>06.12.1986</p>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                            <label class="custom-control-label" for="customSwitch1" switch="true">Темная тема</label>
+                          </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                            <label class="custom-control-label" for="customSwitch2" switch="true">Светлая тема</label>
+                          </div>
+                    </div>
+                    <div class="row mt-5" >
+                        <input type="submit" href="#" class="btn-lg btngroup text-light mt-3" value="Смена пароля"></input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  {% endif %}
+  {% endblock %}

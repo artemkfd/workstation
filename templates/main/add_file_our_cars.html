@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Загрузка наших машин
+{% endblock %}
+
+{% block content %}
+
+<div class="py-4" xmlns="http://www.w3.org/1999/html">
+        <div class="conteiner pt-4">
+            <div class="row">
+                <div class="col-10 mx-auto my-2 text-center">
+                    <h2 class="cart-status font-weight-bold text-muted">добавление наших машин из allprovereno</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+         <form id="check_annul_form" action="add_file_annul" method="POST" enctype="multipart/form-data" >
+             {% csrf_token %}
+
+</div>
+
+    <div class="row align-self-center text-light">
+        <div class="col-12 mx-auto col-md-6 col-lg-3 text-center ">
+                <p class=""><h5>Добавь файл</h5></p>
+            <hr>
+                    <div class="row mt-5 align-self-center">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label class="label ">
+                                    <i class="material-icons text-light cart p-2 mt-2">attach_file</i>
+<!--                                    <input type="file" id="validationFile" class="is-valid" name="file">-->
+                                    {{ form.as_p }}
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" value="Проверить" class="text-center text-light p-2 mt-2">
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        </form>
+
+    </div>
+
+{% endblock %}

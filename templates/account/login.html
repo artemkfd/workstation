@@ -1,0 +1,37 @@
+{% extends "main/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+
+{% block title %}
+	{% trans "Sign In" %}
+{% endblock %}
+{% block content %}
+<div class="container text-center">
+        <div class="row mt-5 mb-4">
+            <div class="col-8 mx-auto text-center cart-status">
+                <h2 class="font-weight-bold text-muted">Авторизация</h2>
+            </div>
+        </div>
+
+        <div class="row mt-5 mb-4">
+            <div class="col-12">
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                  {% csrf_token %}
+                    <p class="mb-5"><label for="id_login"></label> <input class="pl-2 text-light" type="text" name="login" placeholder=" Логин" autocomplete="username" maxlength="150" required="" id="id_login"></p>
+                  <p class="mb-4"><label for="id_password"></label> <input class="pl-2 text-light" type="password" name="password" placeholder=" Пароль" autocomplete="current-password" required="" id="id_password"></p>
+                    <p class="mt-4 mr-2 text-light"><label class="ml-2" for="id_remember">Запомнить меня:</label> <input type="checkbox" name="remember" id="id_remember"></p>
+                    {% if redirect_field_value %}
+
+                  {% endif %}
+                 <input class="p-2 text-light" type="submit" value="Войти"></input>
+
+                </form>
+            </div>
+        </div>
+
+</div>
+
+
+{% endblock %}

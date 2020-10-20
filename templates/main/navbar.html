@@ -1,0 +1,37 @@
+ {% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark mt-3 ml-5 mr-5 top">
+        <a class="navbar-brand" href="#">Workstation<sub style="color: red;"> v.4</sub></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'main' %}">Главная <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Программы
+              </a>
+              <div class="dropdown-menu pd-3" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'add_file_annul' %}">Проверка аннулированных</a>
+                <a class="dropdown-item" href="#">Поиск клиентов</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'settings'%}">Настройки</a>
+            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Таблица</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <a class="nav-link" href="{% url 'account_logout' %}">{{ user.username }}</a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0 search">
+            <input class="form-control text-light mr-sm-3" type="search" placeholder="поиск" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+          </form>
+        </div>
+      </nav>
+ {% endif %}

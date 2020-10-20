@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Поиск совпадений
+{% endblock %}
+
+{% block content %}
+
+<div class="py-4" xmlns="http://www.w3.org/1999/html">
+        <div class="conteiner pt-4">
+            <div class="row">
+                <div class="col-10 mx-auto my-2 text-center">
+                    <h2 class="cart-status font-weight-bold text-muted">Поиск совпадений с нашими машинами</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+        <div class="text-center">
+             <form id="check_annul_form" action="find_our_cars" method="POST" enctype="multipart/form-data" >
+                 {% csrf_token %}
+                <div class="row align-self-center">
+                    <div class="col-12 mx-auto col-md-6 col-lg-3 text-center ">
+                        <div class="form-row">
+                                    <div class="form-group col-md-6 mb-3 formalign-self-start">
+                                        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                                            <p class="text-center">
+                                                <textarea form="check_annul_form" rows="5" cols="45"
+                                                    class="mostly-customized-scrollbar text-center text-light" name="textarea_array"></textarea>
+                                            </p>
+                                    </div>
+                        </div>
+
+                    </div>
+                </div>
+             </form>
+             <div class="row align-self-center">
+                 <div class="col-12">
+                        <input type="submit" value="Поиск" class="text-center text-light p-2 mt-2">
+                 </div>
+             </div>
+        </div>
+
+
+{% endblock %}
