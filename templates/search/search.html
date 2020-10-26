@@ -1,0 +1,53 @@
+{% extends "main/main.html" %}
+    {% block content %}
+        {% load static %}
+        {% if user.is_authenticated %}
+
+
+        <div class="py-4">
+                <div class="conteiner pt-4">
+                    <div class="row">
+                        <div class="col-10 mx-auto my-2 text-center cart-status">
+                            <h2 class="font-weight-bold text-muted">Результат поиска</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center text-light">
+                    {% if query %}
+                        {% with results.count as total_results %}
+                        Найдено {{ total_results }} результатов
+                        {% endwith %}
+                <div class="row ">
+                    <div class="col-4">
+                         {% for result in results %}
+                        <hr>
+                        <a href="{% url 'car_info' result.id %}"><p>{{result}}</p></a>
+                        {% endfor %}
+                    </div>
+                    <div class="col-8">
+                        {% for propusk in propusks %}
+                        <hr>
+                            {% for prop in propusk %}
+                            <a href="#"><p>{{ prop }} {{ prop.date_from }} - {{ prop.date_to }} {{ prop.status }}</p></a>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+                <div class="search_result">
+
+                </div>
+                </div>
+        </div>
+        <script src="{% static 'js/search.js'%}"></script>
+
+
+
+
+        {% endif %}
+    {% endblock %}

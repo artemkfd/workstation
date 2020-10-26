@@ -12,14 +12,14 @@
         <div class="conteiner pt-4">
             <div class="row">
                 <div class="col-10 mx-auto my-2 text-center">
-                    <h2 class="cart-status font-weight-bold text-muted">добавление аннулированных пропусков в БД</h2>
+                    <h2 class="cart-status font-weight-bold text-muted">добавление пропусков из реестра в БД<h6>{{ status }}</h6></h2>
                 </div>
 
             </div>
         </div>
     </div>
     <div class="text-center">
-         <form id="check_annul_form" action="add_file_annul" method="POST" enctype="multipart/form-data" >
+         <form id="check_annul_form" action="add_file_reestr_ba" method="POST" enctype="multipart/form-data" >
              {% csrf_token %}
 
                 <div class="btn-group btn-group-toggle ml-3 p-2 mt-4 mb-4 text-light"  data-toggle="buttons">
@@ -60,7 +60,41 @@
 
 </div>
 <div class="container">
-    {% if all_our_annul_propuska %}
+    <div class="pagination text-center text-light">
+<!--        {{ all_propuska.has_previous }}-->
+<!--        {{ all_propuska.number }}-->
+<!--        {{ all_propuska.paginator.count }}-->
+<!--        {{ all_propuska.paginator.num_pages }}-->
+<!--        {{ all_propuska.paginator.page_range }}-->
+<!--        {{ all_propuska.has_next }}-->
+
+<!--        {% for num in all_propuska.paginator.page_range %}-->
+<!--            {% if all_propuska.number == num %}-->
+<!--        <strong>{{ num }}</strong>-->
+<!--            {% else %}-->
+<!--                {{ num }}-->
+<!--            {% endif %}-->
+<!--        {% endfor %}-->
+
+        {% if all_propuska.has_previous %}
+            <a class="mr-1" href="?page=1"><span class="material-icons">first_page</span></a>
+            <a class="mr-1" href="?page={{ all_propuska.previous_page_number }}"><span class="material-icons">chevron_left</span></a>
+        {% endif%}
+
+        {% for num in all_propuska.paginator.page_range %}
+            {% if all_propuska.number == num %}
+            <strong class="mr-1 ml-1">{{ num }}</strong>
+            {% elif num > all_propuska.number|add:'-5' and num < all_propuska.number|add:'5' %}
+            <a class="mr-1 ml-1" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+          {% if all_propuska.has_next %}
+            <a class="ml-1" href="?page={{ all_propuska.next_page_number }}"><span class="material-icons">chevron_right</span></a>
+            <a class="ml-1" href="?page={{ all_propuska.paginator.num_pages }}"><span class="material-icons">last_page</span></a>
+        {% endif%}
+
+    </div>
     <table class="text-center text-light tbl-all">
                         <thead>
                             <tr class="tbl-row m-3">
@@ -77,8 +111,7 @@
                         </thead>
 
                         <tbody>
-
-                        {% for propusk in all_our_annul_propuska %}
+                        {% for propusk in all_propuska %}
                             <tr class="tbl-row">
                                  <td>{{ propusk.serial_type }}{{ propusk.serial_num }}</td>
                                   <td>{{ propusk.car }}</td>
@@ -93,7 +126,6 @@
 
                             </tr>
                         {% endfor %}
-                        {% endif %}
                         </tbody>
                     </table>
 </div>

@@ -22,14 +22,14 @@
             </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Таблица</a>
+              <a class="nav-link" href="{% url 'propusk_table'%}" tabindex="-1" >Таблица</a>
             </li>
             <li class="nav-item ml-auto">
                 <a class="nav-link" href="{% url 'account_logout' %}">{{ user.username }}</a>
               </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 search">
-            <input class="form-control text-light mr-sm-3" type="search" placeholder="поиск" aria-label="Search">
+          <form action="{% url 'search'%}" method="get" class="form-inline my-2 my-lg-0 search">
+            <input name="search_value" class="form-control text-light mr-sm-3" type="search" placeholder="поиск" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
           </form>
         </div>

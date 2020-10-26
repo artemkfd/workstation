@@ -1,0 +1,27 @@
+{% extends "main/main.html" %}
+    {% block content %}
+        {% load static %}
+        {% if user.is_authenticated %}
+
+
+        <div class="py-4">
+                <div class="conteiner pt-4">
+                    <div class="row">
+                        <div class="col-10 mx-auto my-2 text-center cart-status">
+                            <h2 class="font-weight-bold text-muted">{{ car }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center text-light">
+                    <p>{{ car.create_date }} {{ car.create_date}} {{ car.is_our}}</p>
+                    {% if propusk %}
+                    <p>{{ propusk }} {{ propusk.zone_type}} {{ propusk.serial_type}}{{ propusk.serial_num}} {{ propusk.date_from}} {{ propusk.date_to}} {{ propusk.days_to_end}} {{ propusk.status}} {{ propusk.annul_date}} {{ propusk.proverka_date}} {{ propusk.is_our}} </p>
+                    {% endif %}
+                </div>
+        </div>
+
+
+
+
+        {% endif %}
+    {% endblock %}

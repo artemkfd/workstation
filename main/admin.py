@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Car
+from .models import Car, Propusk
+
+admin.site.register(Propusk)
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):

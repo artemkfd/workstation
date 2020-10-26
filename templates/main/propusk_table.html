@@ -1,0 +1,69 @@
+{% extends "main/main.html" %}
+    {% block content %}
+{% if user.is_authenticated %}
+
+
+<div class="py-4">
+        <div class="conteiner pt-4">
+            <div class="row">
+                <div class="col-10 mx-auto my-2 text-center cart-status">
+                    <h2 class="font-weight-bold text-muted">поиск аннулированных пропусков</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+            <div class="row ">
+
+                <div class="btn-group btngroup ml-3 p-2 mt-4 mb-4">
+                    <form class="form-inline my-2 my-lg-0 mr-3  ml-3 search">
+                        <input class="form-control text-light " type="search" placeholder="поиск на странице"
+                            aria-label="Search"">
+                    </form>
+                    <a href="#" type="button" class="btn text-light btngroup_btn">Скачать</a>
+                    <a href="check_result_with_contact.html" type="button" class="btn text-light btngroup_btn">с_контактными</a>
+                    <a href="#" type="button" class="btn text-light btngroup_btn">без_контактных</a>
+                    <a href="#" type="button" class="btn text-light btngroup_btn">все аннулированные</a>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-4">
+                    <table class="text-center text-light tbl-all">
+                        <thead>
+                            <tr class="tbl-row m-3">
+                                <th class="pl-4">Серия<a href="#" class="material-icons ml-2 ">sort</a></th>
+                                <th class="pl-3">Госномер<a href="#" class="material-icons ml-2">sort</a></th>
+                                <th class="pl-3">Действ с<a href="#" class="material-icons ml-2">sort</a></th>
+                                <th class="pl-3">Действ по<a href="#" class="material-icons ml-2">sort</a></th>
+                                <th class="pl-3">Статус пр <a href="#" class="material-icons ml-2">sort</a></th>
+                                <th class="pl-3">Дата аннул<a href="#" class="material-icons ml-2 text-light">sort</a>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for propusk in allpropuska %}
+                            <tr class="tbl-row">
+                                 <td>{{ propusk.id }}</td>
+                                  <td>{{ propusk.car }}</td>
+                                  <td>{{ propusk.date_from }}</td>
+                                  <td>{{ propusk.date_to }}</td>
+                                  <td>{{ propusk.status }}</td>
+                                  <td>{{ propusk.proverka }}</td>
+
+                                <td><a href="index.html"><span class="material-icons text-light pr-2">info</span></a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+    {% endblock %}
+

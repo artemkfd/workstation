@@ -16,60 +16,53 @@ class Car(models.Model):
 
 
 class Propusk(models.Model):
-    NONE = 0
-    ACTIVE = 1
-    END = 2
-    ANNUL = 3
     STATUS_TYPE = (
-        (NONE, ''),
-        (ACTIVE, 'Активен'),
-        (END, 'Закончился'),
-        (ANNUL, 'Аннулирован'),
+        ('', ''),
+        ('Активен', 'Активен'),
+        ('Закончился', 'Закончился'),
+        ('Аннулирован', 'Аннулирован'),
     )
-    NONE = 0
-    BB = 1
-    BA = 2
     SERIAL_TYPE = (
-        (NONE, ''),
-        (BB, 'ББ'),
-        (BA, 'БА'),
+        ('', ''),
+        ('ББ', 'ББ'),
+        ('БА', 'БА'),
     )
-    serial_type = models.PositiveSmallIntegerField(choices=SERIAL_TYPE, default=0, blank=True, null=True)
+    ZONE_TYPE = (
+        ('', ''),
+        ('МКАД', 'МКАД'),
+        ('ТТК', 'ТТК'),
+        ('СК', 'СК'),
+    )
+    zone_type = models.CharField(max_length=4, choices=ZONE_TYPE, default='', blank=True, null=True)
+    serial_type = models.CharField(max_length=2, choices=SERIAL_TYPE, default='', blank=True, null=True)
     serial_num = models.CharField(max_length=8,blank=True, null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     date_from = models.DateField(blank=True)
     date_to = models.DateField(blank=True)
-    status = models.PositiveSmallIntegerField(choices=STATUS_TYPE, default=0, blank=True, null=True)
+    status = models.CharField(max_length=12, choices=STATUS_TYPE, default='', blank=True, null=True)
     days_to_end = models.CharField(max_length=250, blank=True)
-    annul_date = models.DateField(blank=True)
+    annul_date = models.DateField(blank=True, null=True)
     proverka_date = models.DateField(default=datetime.date.today().strftime("%Y-%m-%d"))
     is_our = models.BooleanField(default=False)
 
     def __str__(self):
 
-        propusk = self.car.grz + ' ' + self.serial_type + ' ' + self.serial_num
+        propusk = self.car.grz
         return propusk
 
 
 class Profile(models.Model):
-    NOTHING = 0
-    SUPER = 1
-    NO_LIMITS = 2
-    PRODUCTION = 3
-    PRODUCTION_WORKER = 4
-    CLIENT_WORKER = 5
-    SALE_WORKER = 6
     PERMISSIONS_TYPE = (
-        (NOTHING, 'Не определен'),
-        (SUPER, 'Создатель'),
-        (NO_LIMITS, 'Без ограничений'),
-        (PRODUCTION, 'Всё производство'),
-        (PRODUCTION_WORKER, 'Производство'),
-        (CLIENT_WORKER, 'Работа с Клиентами'),
-        (SALE_WORKER, 'Отдел продаж')
+        ('NOTHING', 'Не определен'),
+        ('SUPER', 'Создатель'),
+        ('NO_LIMITS', 'Без ограничений'),
+        ('PRODUCTION', 'Всё производство'),
+        ('PRODUCTION_WORKER', 'Производство'),
+        ('CLIENT_WORKER', 'Работа с Клиентами'),
+        ('SALE_WORKER', 'Отдел продаж')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    permission_type = models.PositiveSmallIntegerField(choices=PERMISSIONS_TYPE, default=0)
+    permission_type = models.CharField(max_length=17, choices=PERMISSIONS_TYPE, default=0)
     birthday = models.DateField(blank=True)
     activity = models.IntegerField(default=0, blank=True)
     cars_in_work = models.IntegerField(default=0, blank=True)
